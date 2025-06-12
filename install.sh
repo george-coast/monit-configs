@@ -14,6 +14,10 @@ fi
 CONFIG_DIR="$(pwd)/services"
 TARGET_DIR="/etc/monit.d"
 
+# Create target dir if it doesn't exist
+sudo mkdir -p /etc/monit.d
+
+
 # Copy monit config files
 echo "Copying monit configuration files to $TARGET_DIR"
 sudo cp -v "$CONFIG_DIR"/*.monitrc "$TARGET_DIR"/
