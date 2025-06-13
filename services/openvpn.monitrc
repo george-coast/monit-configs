@@ -1,2 +1,2 @@
 check program openvpn_service with path "/bin/systemctl is-active openvpn.service"
-    if status != 0 then alert
+    if status != 0 then exec "/bin/systemctl restart openvpn.service"
