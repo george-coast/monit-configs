@@ -53,6 +53,10 @@ else
   sed -i 's/^#\s*include \/etc\/monit.d\/\*\.monitrc/include \/etc\/monit.d\/\*\.monitrc/' /etc/monit/monitrc
 fi
 
+# check to see if the openvpn service is running and will start monitoring if it does 
+if monit summary | grep -q "openvpn"; then
+    sudo monit monitor openvpn
+fi
 
 # Uncomment Monit HTTP interface lines
 sudo sed -i 's/^#set httpd port 2812/set httpd port 2812/' /etc/monit/monitrc
