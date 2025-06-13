@@ -45,6 +45,12 @@ else
     echo "Monit HTTP interface already configured in $MONITRC"
 fi
 
+# Uncomment Monit HTTP interface lines
+sudo sed -i 's/^#set httpd port 2812/set httpd port 2812/' /etc/monit/monitrc
+sudo sed -i 's/^#    use address localhost/    use address localhost/' /etc/monit/monitrc
+sudo sed -i 's/^#    allow localhost/    allow localhost/' /etc/monit/monitrc
+sudo sed -i 's/^#    allow admin:monit/    #allow admin:monit/' /etc/monit/monitrc
+
 # Enable and restart monit service
 echo "Enabling and restarting monit service..."
 sudo systemctl enable monit
