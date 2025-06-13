@@ -1,2 +1,3 @@
-check program openvpn_service with path "/bin/systemctl is-active openvpn.service"
-    if status != 0 then exec "/bin/systemctl restart openvpn.service"
+check process openvpn_client with pidfile /run/openvpn/Pod_003.pid
+  start program = "/bin/systemctl start openvpn@Pod_003"
+  stop program = "/bin/systemctl stop openvpn@Pod_003"
