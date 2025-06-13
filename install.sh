@@ -45,6 +45,15 @@ else
     echo "Monit HTTP interface already configured in $MONITRC"
 fi
 
+# Ensure monit includes /etc/monit.d/*.monitrc
+if ! grep -q '^include /etc/monit.d/\*\.monitrc' /etc/monit/monitrc; then
+  echo "include /etc/monit.d/*.monitrc" >> /etc/monit/monitrc
+else
+  # Uncomment if commented out
+  sed -i 's/^#\s*include \/etc\/monit.d\/\*\.monitrc/include \/etc\/monit.d\/\*\.monitrc/' /etc/monit/monitrc
+fi
+
+
 # Uncomment Monit HTTP interface lines
 sudo sed -i 's/^#set httpd port 2812/set httpd port 2812/' /etc/monit/monitrc
 sudo sed -i 's/^#    use address localhost/    use address localhost/' /etc/monit/monitrc
