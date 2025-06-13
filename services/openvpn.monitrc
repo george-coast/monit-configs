@@ -1,5 +1,2 @@
-check process openvpn matching "openvpn --config /etc/openvpn/client/Pod_003"
-  start program = "/bin/systemctl start openvpn@Pod_003.service"
-  stop program  = "/bin/systemctl stop openvpn@Pod_003.service"
-  if failed port 1194 type udp then restart
-  if 5 restarts within 5 cycles then unmonitor
+check program openvpn_service with path "/bin/systemctl is-active openvpn.service"
+    if status != 0 then alert
