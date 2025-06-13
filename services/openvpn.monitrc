@@ -1,4 +1,4 @@
-check process openvpn matching "openvpn --config /etc/openvpn/client/Pod_003.conf"
+check process openvpn matching "openvpn --config /etc/openvpn/client/Pod_003"
   start program = "/bin/systemctl start openvpn@Pod_003.service"
   stop program  = "/bin/systemctl stop openvpn@Pod_003.service"
   if failed port 1194 type udp then restart
