@@ -58,6 +58,14 @@ if monit summary | grep -q "openvpn"; then
     sudo monit monitor openvpn
 fi
 
+cat << 'EOF' > /etc/monit.d/openvpn.monitrc
+check process openvpn matching "openvpn"
+  start program = "/bin/systemctl start openvpn-server@server.service"
+  stop program  = "/bin/systemctl stop openvpn-server@server.service"
+  if failed port 1194 type udp then restart
+  if 5 restarts within 5 cycles then unmonitor
+EOF
+
 # Uncomment Monit HTTP interface lines
 sudo sed -i 's/^#set httpd port 2812/set httpd port 2812/' /etc/monit/monitrc
 sudo sed -i 's/^#    use address localhost/    use address localhost/' /etc/monit/monitrc
