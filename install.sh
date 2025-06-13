@@ -66,6 +66,26 @@ check process openvpn matching "openvpn"
   if 5 restarts within 5 cycles then unmonitor
 EOF
 
+# Define source and target
+SOURCE="/home/mic-733ao/monit-configs/services/openvpn.monitrc"
+TARGET="/etc/monit.d/openvpn_service.monitrc"
+
+# Remove old symlink or file if it exists
+if [ -L "$TARGET" ] || [ -f "$TARGET" ]; then
+    echo "Removing existing monit config at $TARGET..."
+    sudo rm -f "$TARGET"
+fi
+
+# Create symbolic link
+echo "Linking $SOURCE to $TARGET..."
+sudo ln -s "$SOURCE" "$TARGET"
+
+# Reload monit
+echo "Reloading Monit..."
+sudo monit reload
+
+echo "Done. Monit config for openvpn_service is set."
+
 # Uncomment Monit HTTP interface lines
 sudo sed -i 's/^#set httpd port 2812/set httpd port 2812/' /etc/monit/monitrc
 sudo sed -i 's/^#    use address localhost/    use address localhost/' /etc/monit/monitrc
