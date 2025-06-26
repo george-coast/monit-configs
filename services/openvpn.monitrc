@@ -1,3 +1,3 @@
-check process openvpn_client with pidfile /run/openvpn/Pod_003.pid
-  start program = "/bin/systemctl start openvpn@Pod_003"
-  stop program = "/bin/systemctl stop openvpn@Pod_003"
+check process openvpn_client with pidfile /run/openvpn/proXD10.pid
+  start program = "/bin/systemctl start openvpn@proXD10"
+  stop program = "/bin/systemctl stop openvpn@proXD10"
