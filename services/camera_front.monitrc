@@ -1,1 +1,3 @@
-
+check process camera_front matching "send_camera_front_to_pc_robot_view_foxglove.sh"
+  start program = "/bin/systemctl start send_camera_front_to_pc_robot_view_foxglove.service"
+  stop program  = "/bin/systemctl stop send_camera_front_to_pc_robot_view_foxglove.service"
