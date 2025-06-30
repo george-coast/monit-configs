@@ -1,4 +1,4 @@
-check process openvpn_client with pidfile /run/openvpn/proXD10.pid
+check process openvpn_client with pidfile /run/openvpn/arkime.pid
   start program = "/bin/systemctl start openvpn@arkime"
   stop program = "/bin/systemctl stop openvpn@arkime"
 
