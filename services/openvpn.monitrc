@@ -1,3 +1,7 @@
 check process openvpn_client with pidfile /run/openvpn/proXD10.pid
-  start program = "/bin/systemctl start openvpn@proXD10"
-  stop program = "/bin/systemctl stop openvpn@proXD10"
+  start program = "/bin/systemctl start openvpn@arkime"
+  stop program = "/bin/systemctl stop openvpn@arkime"
+
+
+check host openvpn_gateway with address 10.8.0.1
+  if failed ping count 3 within 5 cycles then exec "/bin/systemctl restart openvpn@arkime"
